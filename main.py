@@ -65,7 +65,7 @@ WORD = "filler"
 
 #scheduler to pick a new word from the list that has a wikipage each day
 scheduler = BackgroundScheduler(timezone="Europe/Berlin")
-job = scheduler.add_job(getanswer, 'interval', seconds=10)
+job = scheduler.add_job(getanswer, 'interval', minute=10)
 scheduler.start()
 
 
