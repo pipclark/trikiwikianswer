@@ -19,7 +19,7 @@ def getanswer():
     #print('Sending requests...')
     #WORD = "filler_that's_too_long"
 
-    global WORD # so that it can be sent outside of the function
+    global WORD # so that it can be sent outside of the function, schedule doesn't allow objects to be returned
 
     S = requests.Session()
     wikiexists = False
@@ -48,7 +48,7 @@ def getanswer():
         except:
             print("wikipage doesn't exist")
 
-    print(f"done, today's word is {WORD}")
+    print(f"the new word is {WORD}")
     #return WORD
 
 app = Flask(__name__)
@@ -61,7 +61,8 @@ with open('most-common-nouns-english.csv') as f:
     for row in reader:
         list.append(row[0])
 #print(list)
-WORD = "filler"
+WORD = "temporary" # temporary filler string
+getanswer() # initial run so that a random word is chosen when heroku "wakes up"
 
 #scheduler to pick a new word from the list that has a wikipage each day
 scheduler = BackgroundScheduler(timezone="Europe/Berlin")
