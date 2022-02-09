@@ -55,8 +55,9 @@ app = Flask(__name__)
 CORS(app)
 
 # load the list of 1000 most common nouns in english from https://www.wordexample.com/list/most-common-nouns-english
+# changed to list of common nouns from www.randomlists as these were less abstract, and had more "real" objects.
 list = []
-with open('most-common-nouns-english.csv') as f:
+with open('randomnouns.csv') as f:
     reader = csv.reader(f, delimiter=",")
     for row in reader:
         list.append(row[0])
